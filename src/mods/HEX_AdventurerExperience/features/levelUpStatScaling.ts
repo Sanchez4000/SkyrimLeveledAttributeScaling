@@ -6,7 +6,7 @@ import AdventurerExpirienceAssets from "../data/adventurerExpirienceAssets";
 import SpellData from "src/utils/interfaces/spellData.interface";
 
 export default class LevelUpStatScaling extends Feature {
-  public readonly Name = "StatBoostPerDiscoveredLocation";
+  public readonly Name = "LevelUpStatScaling";
 
   private readonly _eventHandlerName = "RefreshBonuses";
   private readonly _mod = Global.Context.GetMod(
@@ -74,9 +74,12 @@ export default class LevelUpStatScaling extends Feature {
       if (data === undefined) continue;
 
       const magnitude = Math.floor(power / data.divider) * data.value;
-      data.limit === undefined ? 
-        spellForm?.setNthEffectMagnitude(j, magnitude) :
-        spellForm?.setNthEffectArea(j, data.limit);
+
+      if (data.limit !== undefined && magnitude > data.limit) {
+        spellForm?.setNthEffectMagnitude(j, data.limit);
+      } else {
+        spellForm?.setNthEffectMagnitude(j, magnitude);
+      }
     }
 
     player.addSpell(spellForm, !silent);

@@ -164,15 +164,15 @@ export default class AdventurerExpirienceAssets {
         {
           gameName: "Регенерация запаса сил",
           index: 4,
-          divider: 2,
-          value: 5,
+          divider: 5,
+          value: 2,
           limit: undefined,
         },
         {
           gameName: "Регенерация магии",
           index: 5,
-          divider: 2,
-          value: 5,
+          divider: 5,
+          value: 2,
           limit: undefined,
         },
         {
